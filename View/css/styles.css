@@ -14,13 +14,13 @@
     border: 1px solid #0f0;
     background: #36393E;
     height: 400px;
-    color:white;
+    color:#0f0;
 }
 #envio {
     margin-top:40px;
     background: #36393E;
     border: 1px solid #0f0;
-    color: white;
+    color: #0f0;
     resize: none;
     outline: none;
     height: 45px;
@@ -38,8 +38,6 @@
 #enviomod:active {
     background: #282B30;
 }
-
-
 
 @media screen and (max-height: 570px) and (min-height: 501px) {
     #chat {

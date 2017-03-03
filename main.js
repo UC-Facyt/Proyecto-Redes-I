@@ -9,7 +9,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 590,backgroundColor: '#282B30',title: "Project Cthulhu Protocol",
+  mainWindow = new BrowserWindow({width: 800, height: 590,title: "Project Cthulhu Protocol",
 show: false, titleBarStyle: 'hidden-inset'})
 
     //Chao Blink
