@@ -18,20 +18,35 @@
         </div>
 
         <div class="row">
-            <textarea type="text" class="col-xs-11" id="envio"></textarea>
-            <button class="col-xs-1" id="enviomod" onclick="clicko()">
-                <img id="tulito"  style="margin-left: -4px"></img>
+            <textarea type="text" class="col-xs-10 col-sm-11 col-md-11" id="envio"></textarea>
+            
+            <!-- Css aparte please -->
+            <button 
+                class="col-xs-2  col-sm-1 col-md-1" 
+                id="enviomod"
+                style="padding: 0px;">
+                <img src="images/mini.png" id="cthulito"></img>
             </button>
         </div>
     </div>
 
-    <script type="text/javascript">
-        function clicko() {
-            document.getElementsById("tulito").src = "images/mini-click.png";
-        }
-    </script>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+    <!-- Hay que mover esto a un archivo separado -->
+    <script type="text/javascript">
+
+        sendBtn = document.getElementById('enviomod');
+        sendBtn.addEventListener('mousedown', function() {
+            document.getElementById('cthulito').src = 'images/mini-click.png';
+        });
+
+        sendBtn.addEventListener('mouseup', function() {
+            document.getElementById('cthulito').src = 'images/mini.png';
+        });
+
+    </script>
+    <!-- Fin -->
+
   </body>
 </html>
