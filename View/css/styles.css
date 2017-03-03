@@ -22,7 +22,24 @@
     border: 1px solid #0f0;
     color: white;
     resize: none;
+    outline: none;
+    height: 45px;
 }
+
+#enviomod {
+    margin-top:40px;
+    background: #36393E;
+    border-width: 1px 1px 1px 0px;
+    border-style: solid;
+    border-color: #0f0;
+    height: 45px;
+    outline: none;
+}
+#enviomod:active {
+    background: #282B30;
+}
+
+
 
 @media screen and (max-height: 570px) and (min-height: 501px) {
     #chat {
