@@ -1,0 +1,9 @@
+{
+  "name": "Project Cthulhu Protocol",
+  "version": "1.0.0",
+  "description": "A ",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^1.4.1"
+  }
+}
