@@ -9,8 +9,13 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 590,title: "Project Cthulhu Protocol",
-show: false, titleBarStyle: 'hidden-inset'})
+  mainWindow = new BrowserWindow({
+    width: 800, 
+    height: 590,
+    title: "Project Cthulhu Protocol",
+    show: false, 
+    titleBarStyle: 'hidden-inset'
+  })
 
     //Chao Blink
     mainWindow.once('ready-to-show', () => {
@@ -31,6 +36,10 @@ show: false, titleBarStyle: 'hidden-inset'})
 }
 
 app.on('ready', createWindow)
+
+app.on('browser-window-created', function(e, window) {
+  window.setMenu(null);
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
