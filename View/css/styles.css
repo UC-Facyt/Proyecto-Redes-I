@@ -33,7 +33,12 @@
     height: 43px;
     outline: none;
 }
+
 #enviomod:active {
+    background: #282B30;
+}
+
+#enviomod:hover {
     background: #282B30;
 }
 
