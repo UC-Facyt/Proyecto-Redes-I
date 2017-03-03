@@ -19,11 +19,17 @@
 
         <div class="row">
             <textarea type="text" class="col-xs-11" id="envio"></textarea>
-            <button class="col-xs-1" id="enviomod">
-                <img src="images/mini.png" style="margin-left: -4px"></img>
+            <button class="col-xs-1" id="enviomod" onclick="clicko()">
+                <img id="tulito"  style="margin-left: -4px"></img>
             </button>
         </div>
     </div>
+
+    <script type="text/javascript">
+        function clicko() {
+            document.getElementsById("tulito").src = "images/mini-click.png";
+        }
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
