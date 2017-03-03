@@ -21,6 +21,7 @@
     background: #36393E;
     border: 1px solid #0f0;
     color: white;
+    resize: none;
 }
 
 @media screen and (max-height: 570px) and (min-height: 501px) {
