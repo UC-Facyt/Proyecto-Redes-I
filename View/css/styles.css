@@ -20,10 +20,9 @@
     margin-top:40px;
     background: #36393E;
     border: 1px solid #0f0;
-    color: #0f0;
-    resize: none;
-    outline: none;
     height: 45px;
+    padding: 0px;
+    color: #0f0;
 }
 
 #enviomod {
