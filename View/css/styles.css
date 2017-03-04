@@ -30,9 +30,14 @@ html, body {
 .window-title {
     text-align:center;
     color: #0f0;
-    margin-top: -15px;
-    margin-bottom: -25px;
+    margin: -15px 15px -25px;
     line-height: 30px;
+}
+
+@media screen and (max-width: 240px) {
+    .window-title {
+        text-align: left;
+    }
 }
 
 .window-frame-inner {
@@ -81,13 +86,22 @@ html, body {
 }
 
 .chat-textarea-inner {
+    color: #B1BACC;
     overflow: hidden; 
     height: 20px;
     resize: none;
     outline: none; background: rgba(0,0,0,0); 
     border: 0px;
-    margin-top:10px;
-    padding-left:25px;
+    margin-top: 12px;
+    padding-left: 20px;
+    line-height: 15px;
+
+    float: left;
+    width: calc(100% - 60px);
+}
+
+.chat-textarea-inner::-webkit-input-placeholder {
+    color: #9098A6 !important;
 }
 
 .chat-textarea-btn {
@@ -96,9 +110,12 @@ html, body {
     border-width: 0px 0px 0px 0px;
     border-style: solid;
     border-color: #0f0;
-    height: 43px;
+    height: 100%;
     outline: none;
     transition: background 0.5s;
+
+    float: left;
+    width: 60px;
 }
 
 .chat-textarea-btn:hover {

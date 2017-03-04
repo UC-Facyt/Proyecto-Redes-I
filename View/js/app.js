@@ -1,15 +1,49 @@
 (function() {
 	window.$ = window.jQuery = require('jquery'); /* jQuery :( */
 
-	let mCthullu = $('#cthulito');
+	/* Window titles */
+	const winTitleFull  = 'Project Cthullu Protocol';
+	const winTitleShort = 'PCP';
+	
+	const $window = $(window);
+	const $winTitle = $('.window-title');
+	const $cthulluBtn = $('#cthullu-btn');
+	const $cthullu = $('#cthulito');
+	const $chatBox = $('.chat-textarea-inner');
 
-	$('#cthullu-btn').on('mousedown', function() {
-	    mCthullu.attr('src', 'images/mini-cthullu-click.svg');
+	$cthulluBtn.on('mousedown', function() {
+	    $cthullu.attr('src', 'images/mini-cthullu-click.svg');
 	});
 
-	$('#cthullu-btn').on('mouseup', function() {
-	    mCthullu.attr('src', 'images/mini-cthullu.svg');
+	$cthulluBtn.on('mouseup', function() {
+	    $cthullu.attr('src', 'images/mini-cthullu.svg');
 	});
+
+	function rWinTitle() {
+		let width = $window.width();
+		let t = width > 355 ? winTitleFull : winTitleShort;
+		$winTitle.text(t);
+	}
+
+	function rPlaceholder() {
+		let width = $window.width();
+		let ph = 'Cthullu';
+
+		if (width < 205) ph += '...';
+		else if (width < 242) ph += ' wants...';
+		else if (width < 280) ph += ' wants your...'
+		else ph += ' wants your soul!';
+
+		$chatBox.attr('placeholder', ph);
+	};
+
+	/* Call on load */
+	rWinTitle();
+	rPlaceholder();
+
+	/* Bind events */
+	$window.on('resize', rPlaceholder);
+	$window.on('resize', rWinTitle);
 
 	/* Javascript puro 
 
