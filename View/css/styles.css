@@ -92,20 +92,27 @@ html, body {
 
 .chat-textarea-btn {
     padding: 0px;
-    background: #36393E;
+    background: rgba(0,0,0,0);
     border-width: 0px 0px 0px 0px;
     border-style: solid;
     border-color: #0f0;
     height: 43px;
     outline: none;
-}
-
-.chat-textarea-btn:active {
-    background: #282B30;
+    transition: background 0.5s;
 }
 
 .chat-textarea-btn:hover {
     background: #282B30;
+
+}
+
+.chat-textarea-btn #cthulito {
+    width: 35px;
+    transition: width 0.1s;
+}
+
+.chat-textarea-btn:hover #cthulito {
+    width: 41px;
 }
 
 .chat-messages {
@@ -134,7 +141,3 @@ html, body {
     background: rgba(0, 0, 0, 0.5);
 }
 
-/* Cover */
-.cthullu-logo {
-    position: 
-}
