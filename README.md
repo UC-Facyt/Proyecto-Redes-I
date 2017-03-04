@@ -1,4 +1,4 @@
-#### Project Cthullu Protocol
+### Project Cthullu Protocol
 
 Binario falso :trollface:
 
