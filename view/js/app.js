@@ -29,9 +29,9 @@
 		let width = $window.width();
 		let ph = 'Cthullu';
 
-		if (width < 205) ph += '...';
-		else if (width < 242) ph += ' wants...';
-		else if (width < 280) ph += ' wants your...'
+		if (width < 215) ph += '...';
+		else if (width < 255) ph += ' wants...';
+		else if (width < 285) ph += ' wants your...'
 		else ph += ' wants your soul!';
 
 		$chatBox.attr('placeholder', ph);
