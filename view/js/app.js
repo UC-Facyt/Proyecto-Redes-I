@@ -7,9 +7,9 @@
 	
 	const $window = $(window);
 	const $winTitle = $('.window-title');
+	const $chatBox = $('.chat-textarea-inner');
 	const $cthulluBtn = $('#cthullu-btn');
 	const $cthullu = $('#cthulito');
-	const $chatBox = $('.chat-textarea-inner');
 
 	$cthulluBtn.on('mousedown', function() {
 	    $cthullu.attr('src', 'images/mini-cthullu-click.svg');
