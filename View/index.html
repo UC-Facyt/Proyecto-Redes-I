@@ -6,62 +6,65 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
   </head>
-  <body style="background: #282B30" style="overflow:hidden;">
-    <div class="col-xs-12 well" style="-webkit-app-region: drag">
-        <h3 id="pcp">PCP</h3>
-    </div>
-    <div class="container" style="overflow:hidden;">
-        <div class="row">
-            <div class="col-xs-12" id="chat">
+  <body>
+    
+    <!-- HEADER -->
+    <div class="window-frame">
 
+        <div class="window-frame-inner">
+            
+            <!-- Project Cthullu Protocol o PCP ? -->
+            <div><h5 class="window-title">Project Cthullu Protocol</h5></div>
+
+            <!-- Buttons -->
+            <div class="window-buttons">
+                <button id="min-btn" type="button" class="window-btn">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </button>
+                <button id="max-btn" type="button" class="window-btn">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </button>
+                <button id="close-btn" type="button" class="window-btn">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
             </div>
+            <!-- Borra esto andres (MAC) -->
+        
         </div>
 
-        <div class="row">
-            <form action="javascript:void(0);">>
-                <div id="envio">
+    </div>
 
-                        <textarea type="text" class="col-xs-10 col-sm-11"
-                        style="
-                            overflow: hidden; 
-                            height:20px;
-                            resize: none;
-                            outline: none; background: rgba(0,0,0,0); 
-                            border: 0px;
-                            margin-top:10px;
-                            padding-left:25px"
-                        
-                        placeholder="Cthullu wants your soul"></textarea>
-                    
-                    <!-- Css aparte please -->
-                        <button
-                            class="col-xs-2 col-sm-1"
-                            id="enviomod"
-                            style="padding: 0px;">
+    <div class="app-body">
+        
+        <div class="container" style="overflow:hidden;">
+            
+            <div class="row">
+                <!-- chat-messages -->
+                <div class="chat-messages col-xs-12"></div>
+            </div>
+
+            <div class="row">
+                <form action="javascript:void(0);">
+                    <!-- chat-textarea -->
+                    <div class="chat-textarea">
+                        <textarea type="text" class="chat-textarea-inner col-xs-10 col-sm-11" placeholder="Cthullu wants your soul"></textarea>
+                        <!-- (Wtf enviomod?) -->
+                        <button id="cthullu-btn" class="chat-textarea-btn col-xs-2 col-sm-1">
                             <img src="images/mini.png" id="cthulito"></img>
-                        </button>
-                    
-                </div>
-            </form>
+                        </button>    
+                    </div>
+                </form>
+            </div>
+
         </div>
     </div>
 
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script src="js/bootstrap.min.js"></script>
 
-    <!-- Hay que mover esto a un archivo separado -->
-    <script type="text/javascript">
-
-        sendBtn = document.getElementById('enviomod');
-        sendBtn.addEventListener('mousedown', function() {
-            document.getElementById('cthulito').src = 'images/mini-click.png';
-        });
-
-        sendBtn.addEventListener('mouseup', function() {
-            document.getElementById('cthulito').src = 'images/mini.png';
-        });
-
-    </script>
+    <!-- Concat ? -->
+    <script type="text/javascript">require('./js/control.js')</script>
+    <script type="text/javascript">require('./js/app.js')</script>
     <!-- Fin -->
 
   </body>

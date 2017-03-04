@@ -11,10 +11,11 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800, 
-    height: 590,
+    height: 600,
+    frame: false,
     title: "Project Cthulhu Protocol",
     show: false, 
-    titleBarStyle: 'hidden-inset'
+    titleBarStyle: 'hidden-inset',
   })
 
     //Chao Blink

@@ -1,23 +1,78 @@
-.well {
-    background-color: black;
-    border-style: solid;
-    border-width: 0px 0px 5px 0px;
-    border-color: #0f0;
+html, body {
+    background: #282B30;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
-#pcp {
+
+.window-btn {
+    color: #282B30;
+    background-color: rgba(0,0,0,0);
+    outline: none;
+    border: none;
+    -webkit-app-region: no-drag;
+}
+
+.window-btn:hover {
+    color: #36393E;
+}
+
+.window-btn:active {
+    color: #00FF00;
+}
+
+.window-buttons {
+    position: fixed;
+    top: 8px;
+    right: 5px;
+}
+
+.window-title {
     text-align:center;
     color: #0f0;
     margin-top: -15px;
-    margin-bottom: -25px
+    margin-bottom: -25px;
+    line-height: 30px;
 }
-#chat {
-    border: 1px solid #0f0;
-    background: #36393E;
-    height: 400px;
-    color:#0f0;
+
+.window-frame-inner {
+    -webkit-app-region: drag;
 }
-#envio {
-    margin-top:40px;
+
+.window-frame {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+
+    background-color: black;
+
+    min-height: 20px;
+    padding: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 20px;
+
+    border: 1px solid;
+    border-width: 0px 0px 3px 0px;
+    border-radius: 0px;
+    border-color: #0f0;
+
+    z-index: 999;
+}
+
+.app-body {
+    margin-top: 61px;
+}
+
+@media screen and (max-width: 765px) {
+    .app-body {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+.chat-textarea {
+    margin-top: 20px;
     background: #36393E;
     border: 1px solid #0f0;
     height: 45px;
@@ -25,7 +80,18 @@
     color: #0f0;
 }
 
-#enviomod {
+.chat-textarea-inner {
+    overflow: hidden; 
+    height: 20px;
+    resize: none;
+    outline: none; background: rgba(0,0,0,0); 
+    border: 0px;
+    margin-top:10px;
+    padding-left:25px;
+}
+
+.chat-textarea-btn {
+    padding: 0px;
     background: #36393E;
     border-width: 0px 0px 0px 0px;
     border-style: solid;
@@ -34,49 +100,41 @@
     outline: none;
 }
 
-#enviomod:active {
+.chat-textarea-btn:active {
     background: #282B30;
 }
 
-#enviomod:hover {
+.chat-textarea-btn:hover {
     background: #282B30;
 }
 
-@media screen and (max-height: 570px) and (min-height: 501px) {
-    #chat {
-        height: 300px;
-    }
-}
-
-@media screen and (max-height: 500px) and (min-height: 100px) {
-    #chat {
-        height: 200px;
-    }
-}
-
-@media screen and (max-height: 749px) and (min-height: 670px) {
-    #chat {
-        height: 500px;
-    }
-}
-@media screen and (max-height: 1024px) and (min-height: 750px) {
-    #chat {
-        height: 600px;
-    }
+.chat-messages {
+    border: 1px solid #0f0;
+    background: #36393E no-repeat;
+    background-image: url(../images/cthullu-logo.svg), none;
+    background-position: center; 
+    -webkit-background-size: 60%;
+    height: calc(100vh - (155px));
+    color: #0f0;
 }
 
 ::-webkit-scrollbar
 {
-  width: 12px;  /* for vertical scrollbars */
-  height: 12px; /* for horizontal scrollbars */
+    width: 12px;  /* for vertical scrollbars */
+    height: 12px; /* for horizontal scrollbars */
 }
 
 ::-webkit-scrollbar-track
 {
-  background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-thumb
 {
-  background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Cover */
+.cthullu-logo {
+    position: 
 }
