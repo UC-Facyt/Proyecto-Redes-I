@@ -1,6 +1,6 @@
 #### Project Cthullu Protocol
 
-Binario falco :trollface:
+Binario falso :trollface:
 
 ---
 
