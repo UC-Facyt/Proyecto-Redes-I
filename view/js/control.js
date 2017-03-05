@@ -21,5 +21,11 @@
 		win.close();
 	});
 
+	function rWinTitle() {
+		let width = $window.width();
+		let t = width > 355 ? winTitleFull : winTitleShort;
+		$winTitle.text(t);
+	}
+
 })();
 
