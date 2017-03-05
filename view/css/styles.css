@@ -4,6 +4,16 @@ html, body {
     height: 100%;
     overflow: hidden;
 }
+.Dragmod{
+    display: none;
+    z-index: 1000;
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
 
 .window-btn {
     color: #282B30;
@@ -87,10 +97,10 @@ html, body {
 
 .chat-textarea-inner {
     color: #B1BACC;
-    overflow: hidden; 
+    overflow: hidden;
     height: 20px;
     resize: none;
-    outline: none; background: rgba(0,0,0,0); 
+    outline: none; background: rgba(0,0,0,0);
     border: 0px;
     margin-top: 12px;
     padding-left: 20px;
@@ -136,7 +146,7 @@ html, body {
     border: 1px solid #0f0;
     background: #36393E no-repeat;
     background-image: url(../images/cthullu-logo.svg), none;
-    background-position: center; 
+    background-position: center;
     -webkit-background-size: 60%;
     height: calc(100vh - (155px));
     color: #0f0;
@@ -157,4 +167,3 @@ html, body {
 {
     background: rgba(0, 0, 0, 0.5);
 }
-
