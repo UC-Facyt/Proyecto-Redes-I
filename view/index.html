@@ -6,7 +6,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
   </head>
-  <body id="dragon">
+  <body>
 
     <!-- HEADER -->
     <div class="window-frame">
@@ -16,6 +16,20 @@
             <!-- Project Cthullu Protocol o PCP ? -->
             <div><h5 class="window-title">Project Cthullu Protocol</h5></div>
 
+            <!-- Buttons -->
+            <div class="window-buttons">
+                <button id="min-btn" type="button" class="window-btn">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </button>
+                <button id="max-btn" type="button" class="window-btn">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                </button>
+                <button id="close-btn" type="button" class="window-btn">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+            <!-- Comenta esto andres (MAC) -->
+            
         </div>
 
     </div>
@@ -34,7 +48,6 @@
                     <!-- chat-textarea -->
                     <div class="chat-textarea">
                         <textarea type="text" class="chat-textarea-inner" placeholder="Cthullu wants your soul!"></textarea>
-                        <!-- (Wtf enviomod?) -->
                         <button id="cthullu-btn" class="chat-textarea-btn">
                             <img src="images/mini-cthullu.svg" id="cthulito"></img>
                         </button>
@@ -45,9 +58,8 @@
         </div>
     </div>
 
-    <div id="dragomonster" class="Dragmod">
-
-    </div>
+    <!-- Name weirdo -->
+    <div id="dragomonster" class="drag-modal"></div>
 
     <script>window.$ = window.jQuery = require('jquery');</script>
     <script src="js/bootstrap.min.js"></script>
