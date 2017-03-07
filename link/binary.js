@@ -74,6 +74,32 @@ function processChunk(chunk) {
 	}
 }
 
+/* Add an argument with hamming number? */
+
+exports.hamming = (bits) => {
+
+	let p = 1;
+	let bitL = bits.split('');
+
+	for (p=1; p <= bits.length; p<<=1)
+		bitL.splice(p-1, 0, 0); /* Important! */
+
+	const np = Math.log2(p);
+
+	for (let i=1; i <= bitL.length; i++) {
+		
+		if ((i & i-1) != 0) {
+			for (let j=0, p=1; j < np; j++, p<<=1) {
+				if (((i >> j) & 1) && bitL[i-1] === '1') 
+					bitL[p-1] ^= 1;
+			}
+		}
+	}
+
+	/* Asumo que esta bueno */
+	return bitL.join('');
+}
+
 function readFile(path) {
 	const stream = fs.createReadStream(path);
 	stream.on('data' , processChunk);
