@@ -1,4 +1,4 @@
-const crc_16 = function(a){
+exports.crc_16 = function(a){
     let s = a;
     let polynome = "10001000000100001";
     s = s + "0".repeat(polynome.length -1);
@@ -24,7 +24,7 @@ const crc_16 = function(a){
     return a
 }
 
-const crc_16_Ver = function(a){
+exports.crc_16_Ver = function(a){
     let s = a;
     let polynome = "10001000000100001";
     s = s.split('');
@@ -39,36 +39,37 @@ const crc_16_Ver = function(a){
     return s == "";
 }
 
-const unCrc = (s)=>{
+exports.unCrc = (s)=>{
     return s.slice(0,-16);
 }
 
-const excluOr = function(s,polynome){
+exports.excluOr = function(s,polynome){
     for(let i = 0; i< polynome.length ; i++){
         s[i] = s[i] ^ polynome[i];
     }
     return s;
 }
 
-const limpia = function(s){
+exports.limpia = function(s){
     while(s.length > 0 && s[0] != 1){
         s.shift(1);
     }
     return s;
 }
 
-const relleno = function(s){
+exports.relleno = function(s){
         return s.replace(/(11111)/g,"111110");
 }
 
-const desRelleno = (s)=>{
-    return s.replace(/(111110)/g,"11111");
+exports.desRelleno = (s)=>{
+    s = s.replace(/(111110)/g,"11111");
+    return s.replace(/(111111)/g,"11111");
 }
 
-const banderiador = (s)=>{
+exports.banderiador = (s)=>{
     return "01111110" + s + "01111110";
 }
 
-const apatrida = (s)=>{
+exports.apatrida = (s)=>{
     return s.slice(7).slice(0,-7)
 }

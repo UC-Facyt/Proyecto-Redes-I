@@ -1,6 +1,7 @@
 (function () {
     const body = document.getElementsByTagName('body')[0];
     const modal = document.getElementById('dragomonster');
+    const chatarea = document.getElementsByClassName('chat-textarea-inner')[0];
     const fs = require('fs');
 
     body.ondragover = (e) => {
@@ -53,8 +54,20 @@
     }
 
     const modChat = (s)=>{
-        let chatarea = document.getElementsByClassName('chat-textarea-inner')[0];
         chatarea.value = s.slice(0,-1);
+    }
+
+    chatarea.onkeyup = function(e){
+        e = e || event;
+        if (e.keyCode === 13) {
+            text = chatarea.value
+            chatarea.value = "";
+            if(text != "\n")
+            {
+                console.log(text)
+            }
+        }
+        return true;
     }
 
 })();
