@@ -78,11 +78,15 @@ function processChunk(chunk) {
 
 exports.hamming = (bits) => {
 
-	let p = 1;
 	let bitL = bits.split('');
+	let p = 1;
+	let res = bits.length;
 
-	for (p=1; p <= bits.length; p<<=1)
+	while(res > 0) {
 		bitL.splice(p-1, 0, 0); /* Important! */
+		res -= (p << 1) - p - 1;
+		p <<= 1;
+	}
 
 	const np = Math.log2(p);
 
@@ -95,8 +99,7 @@ exports.hamming = (bits) => {
 			}
 		}
 	}
-
-	/* Asumo que esta bueno */
+	
 	return bitL.join('');
 }
 

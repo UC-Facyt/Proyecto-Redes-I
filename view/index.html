@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PCP</title>
+    <title>Project Cthullu Protocol</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
   </head>
@@ -46,7 +46,7 @@
             <div class="row">
                 <form action="javascript:void(0);">
                     <!-- chat-textarea -->
-                    <div class="chat-textarea">
+                    <div id="chat-box" class="chat-textarea">
                         <textarea type="text" class="chat-textarea-inner" placeholder="Cthullu wants your soul!"></textarea>
                         <button id="cthullu-btn" class="chat-textarea-btn">
                             <img src="images/mini-cthullu.svg" id="cthulito"></img>
@@ -65,9 +65,10 @@
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Concat ? -->
-    <script type="text/javascript">require('./js/control.js')</script>
     <script type="text/javascript">require('./js/app.js')</script>
+    <script type="text/javascript">require('./js/control.js')</script>
     <script type="text/javascript">require('./js/drag.js')</script>
+    <script type="text/javascript">require('./js/textarea.js')</script>
     <!-- Fin -->
 
   </body>

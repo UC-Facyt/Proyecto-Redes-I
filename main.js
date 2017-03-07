@@ -12,10 +12,11 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 800, 
     height: 600,
+    show: false, 
     frame: false,
     title: "Project Cthulhu Protocol",
-    show: false, 
     titleBarStyle: 'hidden-inset',
+    icon: './view/images/cthullu-icon-64.png'
   })
 
     //Chao Blink
