@@ -1,4 +1,4 @@
-const crc_16 = function(a){
+const crc_16 = function(a) {
     let s = a;
     let polynome = "10001000000100001";
     s = s + "0".repeat(polynome.length -1);
@@ -24,7 +24,7 @@ const crc_16 = function(a){
     return a
 }
 
-const crc_16_Ver = function(a){
+const crc_16_Ver = function(a) {
     let s = a;
     let polynome = "10001000000100001";
     s = s.split('');
@@ -50,25 +50,9 @@ const excluOr = function(s,polynome){
     return s;
 }
 
-const limpia = function(s){
+const limpia = function(s) {
     while(s.length > 0 && s[0] != 1){
         s.shift(1);
     }
     return s;
-}
-
-const relleno = function(s){
-        return s.replace(/(11111)/g,"111110");
-}
-
-const desRelleno = (s)=>{
-    return s.replace(/(111110)/g,"11111");
-}
-
-const banderiador = (s)=>{
-    return "01111110" + s + "01111110";
-}
-
-const apatrida = (s)=>{
-    return s.slice(7).slice(0,-7)
 }
