@@ -1,13 +1,9 @@
 const config = require('./config.js');
 const bin = require('./binary.js');
-const string_decoder = require('string_decoder');
-
-const StringDecoder = string_decoder.StringDecoder;
-const decoder = new StringDecoder('utf-8');
 
 const parityCount = (bCount) => Math.ceil(Math.log2(bCount+1));
 
-exports.remParityBits = (bits) => {
+function remParityBits(bits) {
 
 	const bitArr = bits.split('');
 	const pCount = parityCount(bits.length);
@@ -16,6 +12,25 @@ exports.remParityBits = (bits) => {
 		bitArr.splice(p-1, 1);
 
 	return bitArr.join('');
+}
+
+function applyPacket(packet, callback, bCount = 10, uCount = 8) {
+
+	let codes = []
+	let cont = packet.substr(0, bCount);
+	let rest = packet.substr(bCount);
+
+	codes.push(callback(cont));
+	for(let i=0; i < rest.length; i+=uCount) {
+		let seg = rest.substr(i, uCount);
+		codes.push(callback(seg));
+	}
+
+	return codes;
+}
+
+exports.remPacketParityBits = (packet) => {
+	return applyPacket(packet, remParityBits, 14, 12).join('');
 }
 
 function parityBits(bits, pCount) {
@@ -56,32 +71,13 @@ function hamming(bits) {
 	const pCount = i
 	const pBits = parityBits(bitArr, pCount);
 
-	for(i=0, p=1; i < pBits.length; i++, p<<=1) 
+	for(i=0, p=1; i < pCount; i++, p<<=1) 
 		bitArr[p-1] = pBits[i]
-
-	console.log(bitArr.join(''));
 
 	return bitArr.join('');
 }
 
-exports.segHamming = (packet) => {
-
-	let codes = [];
-	let cont = bin.getCharCont(packet);
-	let rest = bin.remCharCont(packet);
-
-	codes.push(hamming(cont));
-	for (let i=0; i < rest.length; i+=8) {
-		let seg = rest.substr(i, 8);
-		codes.push(hamming(seg));
-	}
-
-	return codes.join('');
-};
-
-exports.hamming = hamming;
-
-exports.hammingCorrect = (bits) => {
+function detectCorrect(bits) {
 
 	const bCount = bits.length;
 	const bitArr = bits.split('');
@@ -89,7 +85,7 @@ exports.hammingCorrect = (bits) => {
 	const pBits  = parityBits(bitArr, pCount);
 
 	let err = 0;
-	for(let i=0, p=1; p < bits.length; i++, p<<=1) 
+	for(let i=0, p=1; i < pCount; i++, p<<=1) 
 		if (pBits[i] != bits[p-1]) err += p;
 
 	const bad = err - 1;
@@ -103,3 +99,14 @@ exports.hammingCorrect = (bits) => {
 		err: bad
 	};
 }
+
+exports.segHamming = (packet) => {
+	return applyPacket(packet, hamming).join('');
+};
+
+exports.correctPacket = (packet) => {
+	return applyPacket(packet, detectCorrect, 14, 12);
+};
+
+exports.hamming = hamming;
+exports.detectCorrect = detectCorrect;

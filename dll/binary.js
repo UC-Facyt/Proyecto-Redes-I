@@ -1,4 +1,8 @@
 const config = require('./config.js');
+const string_decoder = require('string_decoder');
+
+const StringDecoder = string_decoder.StringDecoder;
+const decoder = new StringDecoder('utf-8');
 
 const leftPad = (str, pad) => "0".repeat(pad-str.length) + str;
 const bin2Str = (num, pad) => leftPad(num.toString(2), pad);
@@ -48,7 +52,7 @@ exports.getCharCont = (bits) => bits.substr(0, 10);
 exports.bytesContCheck = (bits) => {
 
 	const bCont = bits.substr(0, config.CONT_SIZE);
-	const dCont = parseInt(cont, 2);
+	const dCont = parseInt(bCont, 2);
 	const data = bits.substr(config.CONT_SIZE)
 	const byteCount = Math.ceil(data.length / 8);
 

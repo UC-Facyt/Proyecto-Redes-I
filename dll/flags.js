@@ -1,5 +1,5 @@
 exports.relleno = function(s){
-        return s.replace(/(11111)/g,"111110");
+	return s.replace(/(11111)/g,"111110");
 }
 
 exports.desRelleno = (s)=>{
@@ -12,5 +12,5 @@ exports.banderiador = (s)=>{
 }
 
 exports.apatrida = (s)=>{
-    return s.slice(7).slice(0,-7)
+    return s.slice(8).slice(0,-8)
 }
