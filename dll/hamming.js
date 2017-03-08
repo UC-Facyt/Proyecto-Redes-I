@@ -1,3 +1,5 @@
+const config = require('./config.js');
+const bin = require('./binary.js');
 const string_decoder = require('string_decoder');
 
 const StringDecoder = string_decoder.StringDecoder;
@@ -38,7 +40,7 @@ function parityBits(bits, pCount) {
 
 /* Add an argument with hamming number? */
 
-exports.hamming = (bits) => {
+function hamming(bits) {
 
 	const bCount = bits.length;
 	const bitArr = bits.split('');
@@ -54,11 +56,30 @@ exports.hamming = (bits) => {
 	const pCount = i
 	const pBits = parityBits(bitArr, pCount);
 
-	for(i=0, p=1; p < bCount; i++, p<<=1) 
+	for(i=0, p=1; i < pBits.length; i++, p<<=1) 
 		bitArr[p-1] = pBits[i]
+
+	console.log(bitArr.join(''));
 
 	return bitArr.join('');
 }
+
+exports.segHamming = (packet) => {
+
+	let codes = [];
+	let cont = bin.getCharCont(packet);
+	let rest = bin.remCharCont(packet);
+
+	codes.push(hamming(cont));
+	for (let i=0; i < rest.length; i+=8) {
+		let seg = rest.substr(i, 8);
+		codes.push(hamming(seg));
+	}
+
+	return codes.join('');
+};
+
+exports.hamming = hamming;
 
 exports.hammingCorrect = (bits) => {
 

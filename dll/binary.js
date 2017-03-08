@@ -42,11 +42,8 @@ exports.addCharCont = (bits) => {
 	return bin2Str(cont, 10) + bits;
 }
 
-exports.remCharCont = (bits) => {
-
-	/* log2(config.MAX_BYTES + 1) */
-	return bits.substr(10);
-}
+exports.remCharCont = (bits) => bits.substr(10);
+exports.getCharCont = (bits) => bits.substr(0, 10);
 
 exports.bytesContCheck = (bits) => {
 

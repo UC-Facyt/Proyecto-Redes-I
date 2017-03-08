@@ -1,3 +1,4 @@
+
 exports.crc_16 = function(a){
     let s = a;
     let polynome = "10001000000100001";
@@ -43,14 +44,14 @@ exports.unCrc = (s)=>{
     return s.slice(0,-16);
 }
 
-exports.excluOr = function(s,polynome){
+excluOr = function(s,polynome){
     for(let i = 0; i< polynome.length ; i++){
         s[i] = s[i] ^ polynome[i];
     }
     return s;
 }
 
-exports.limpia = function(s){
+limpia = function(s){
     while(s.length > 0 && s[0] != 1){
         s.shift(1);
     }
