@@ -1,4 +1,4 @@
-const crc_16 = function(a) {
+exports.crc_16 = function(a){
     let s = a;
     let polynome = "10001000000100001";
     s = s + "0".repeat(polynome.length -1);
@@ -24,7 +24,7 @@ const crc_16 = function(a) {
     return a
 }
 
-const crc_16_Ver = function(a) {
+exports.crc_16_Ver = function(a){
     let s = a;
     let polynome = "10001000000100001";
     s = s.split('');
@@ -39,18 +39,18 @@ const crc_16_Ver = function(a) {
     return s == "";
 }
 
-const unCrc = (s)=>{
+exports.unCrc = (s)=>{
     return s.slice(0,-16);
 }
 
-const excluOr = function(s,polynome){
+exports.excluOr = function(s,polynome){
     for(let i = 0; i< polynome.length ; i++){
         s[i] = s[i] ^ polynome[i];
     }
     return s;
 }
 
-const limpia = function(s) {
+exports.limpia = function(s){
     while(s.length > 0 && s[0] != 1){
         s.shift(1);
     }
