@@ -160,6 +160,8 @@ html, body {
     -webkit-background-size: 60%;
     height: calc(100vh - (155px));
     color: #0f0;
+
+    transition: background-image 0.75s;
 }
 
 ::-webkit-scrollbar
