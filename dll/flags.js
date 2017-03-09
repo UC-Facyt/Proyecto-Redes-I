@@ -3,8 +3,7 @@ exports.relleno = function(s){
 }
 
 exports.desRelleno = (s)=>{
-    s = s.replace(/(111110)/g,"11111");
-    return s.replace(/(111111)/g,"11111");
+    return s.replace(/(11111(0|1))/g,"11111");
 }
 
 exports.banderiador = (s)=>{

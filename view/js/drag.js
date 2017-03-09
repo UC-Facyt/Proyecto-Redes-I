@@ -106,6 +106,7 @@
         let msg = bin.decodeBytes(bytes);
         console.log(msg);
         chatsito.innerHTML = chatsito.innerHTML + "<p>Receptor : " + msg + "</p>";
+        chatsito.scrollTop = chatsito.scrollHeight;
     }
 
     function updateNoTxt(tramas) {
