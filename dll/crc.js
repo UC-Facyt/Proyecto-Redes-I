@@ -12,13 +12,15 @@ exports.crc_16 = function(a){
     }
 
     s = s.join('');
+
     if(s == ""){
         a = a + "0".repeat((polynome.length -1));
     }
     else{
         if(s.length != (polynome.length - 1))
         {
-            s = '0'.repeat(polynome.length - s.length) + s
+            s = '0'.repeat(polynome.length-1 - s.length) + s
+            console.log(s);
         }
         a = a + s
     }

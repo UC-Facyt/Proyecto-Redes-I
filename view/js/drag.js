@@ -77,6 +77,7 @@
         if (e.keyCode === 13) {
             envio();
         }
+        chatsito.scrollTop = chatsito.scrollHeight;
         return true;
     }
 
