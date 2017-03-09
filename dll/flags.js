@@ -18,7 +18,9 @@ exports.apatrida = (s)=>{
 exports.flagVerification = (s)=>{
 	flag = "01111110";
 	coolBruh = true;
+	console.log(s.slice(0, 8));
 	coolBruh = coolBruh && s.slice(0, 8) == flag;
+	console.log(s.slice(-8));
 	coolBruh = coolBruh && s.slice(-8) == flag;
 	return coolBruh;
 
