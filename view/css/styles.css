@@ -160,7 +160,7 @@ html, body {
     -webkit-background-size: 60%;
     height: calc(100vh - (155px));
     color: #0f0;
-
+    overflow: auto;
     transition: background-image 0.75s;
 }
 
