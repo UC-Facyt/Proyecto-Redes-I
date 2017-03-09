@@ -94,27 +94,38 @@ function disasPacket(packet) {
 /* This class "puts" the data on the channel */
 function Channel() {
 	this.wt = fs.createWriteStream(config.CHANNEL);
-	this.put = (bits) => wt.write(bits);
-	this.end = () => wt.end('\n');
+	this.put = (bits) => this.wt.write(bits + '\n');
+	this.end = () => this.wt.end();
+	return this;
 }
 
-function processChunk(chunk, text = true) {
+exports.Channel = Channel;
 
+function processChunk(chunk, text = false) {
+	
+	const empty = "01111110000000000001111110";
 	const channel = Channel();
+	const tramas = [];
 
 	/* Cambiar esto a una funcion mas escalable */
-	if(!text) 
-		channel.put("01111110000000000001111110");
+	if(!text) {
+		channel.put(empty);
+		tramas.push(empty);
+	}
 
 	for (let b of bin.bytes2Bits(chunk)) {
 		let trama = createPacket(b);
 		channel.put(trama);
+		tramas.push(trama);
 	}
 
-	if(!text) 
-		channel.put("01111110000000000001111110");
+	if(!text) {
+		channel.put(empty);
+		tramas.push(empty);
+	}
 
 	channel.end();
+	console.log(tramas);
 };
 
 exports.processChunk = processChunk;

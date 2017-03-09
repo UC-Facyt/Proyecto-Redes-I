@@ -19,6 +19,9 @@ exports.bytes2Bits = function* (chunk) {
 			bitArray = [];
 		}
 	}
+
+	if (bitArray.length != 0)
+		yield bitArray.join('');
 }
 
 exports.bits2Bytes = (bits) => {
