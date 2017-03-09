@@ -51,7 +51,7 @@ function createPacket(packet) {
 }
 
 function disasPacket(packet) {
-	let coolBruh true;
+	let coolBruh = true;
 	console.log('\nBanderas:');
 	coolBruh = flg.flagVerification(packet);
 
@@ -59,7 +59,7 @@ function disasPacket(packet) {
 		console.log("Las Banderas estan mal");
 		packet = -1;
 	}
-	if(coolBruh){
+	else {
 		packet = flg.apatrida(packet);
 		console.log(packet);
 

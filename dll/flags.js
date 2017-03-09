@@ -18,17 +18,8 @@ exports.apatrida = (s)=>{
 exports.flagVerification = (s)=>{
 	flag = "01111110";
 	coolBruh = true;
-
-	if(s.slice(8) != flag)
-	{
-		coolBruh = false;
-	}
-
-	if(s.slice(-8) != flag)
-	{
-		coolBruh = false;
-	}
-
+	coolBruh = coolBruh && s.slice(0, 8) == flag;
+	coolBruh = coolBruh && s.slice(-8) == flag;
 	return coolBruh;
 
 }
