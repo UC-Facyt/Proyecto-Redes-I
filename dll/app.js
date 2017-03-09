@@ -91,15 +91,19 @@ function disasPacket(packet) {
 	return packet;
 }
 
-function processChunk(chunk) {
+function processChunk(chunk,text = true) {
+
+	let tramas = [];
+
+	if(text) tramas.push("01111110000000000001111110");
 
 	for (let b of bin.bytes2Bits(chunk)) {
 		let trama = createPacket(b);
 
-		/* Escribir en tramas.txt */
-
-		console.log(disasPacket(trama));
+		tramas.push(trama);
 	}
+
+	if(text) tramas.push("01111110000000000001111110");
 };
 
 exports.processChunk = processChunk;
