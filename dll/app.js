@@ -110,7 +110,7 @@ exports.processChunk = (chunk) => {
 
 exports.readFile = (path) => {
 	const stream = fs.createReadStream(path);
-	stream.on('data' , processChunk);
+	stream.on('data' , exports.processChunk);
 	stream.on('error', (err) => {
 		console.log(err);
 	});

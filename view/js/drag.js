@@ -74,19 +74,10 @@
             if(text != "\n")
             {
                 console.log(text);
-                text = dannyDeBitO(text);
-                new Buffer(text.split(''));
+                app.processChunk(Buffer.from(text, 'utf8'));
             }
         }
         return true;
-    }
-
-    const dannyDeBitO = (text) =>{
-        let s = [];
-        for (let x of text) {
-            s.push(x.charCodeAt())
-        }
-        return s;
     }
 
 })();
