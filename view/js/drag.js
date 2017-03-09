@@ -1,12 +1,17 @@
 (function () {
+
+    const dragCthullu = 'url(images/cthullu-logo-drag.svg), none';
+
     const body = document.getElementsByTagName('body')[0];
     const modal = document.getElementById('dragomonster');
     const chatarea = document.getElementsByClassName('chat-textarea-inner')[0];
+    const chatMsgs = $('.chat-messages');
     const fs = require('fs');
     const app = require('../../dll/app.js')
 
     body.ondragover = (e) => {
         modal.style.display = "block";
+        chatMsgs.css('background-image', dragCthullu);
         return false;
     };
 
@@ -16,11 +21,13 @@
 
     modal.ondragover = (e) => {
         modal.style.display = "block";
+        chatMsgs.css('background-image', dragCthullu);
         return false;
     };
 
     modal.ondragleave = (e) => {
         modal.style.display = "none";
+        chatMsgs.css('background-image', '');
         return false
     };
 
@@ -29,6 +36,7 @@
     modal.ondrop = (e) => {
         e.preventDefault();
         modal.style.display = "none";
+        chatMsgs.css('background-image', '');
 
         let f = e.dataTransfer.files[0]
         console.log('File(s) you dragged here: ', f.path)
