@@ -51,7 +51,7 @@ function createPacket(packet) {
 }
 
 function disasPacket(packet) {
-	let coolBruh true;
+	let coolBruh = true;
 	console.log('\nBanderas:');
 	coolBruh = flg.flagVerification(packet);
 

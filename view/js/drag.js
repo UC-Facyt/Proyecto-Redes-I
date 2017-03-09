@@ -7,6 +7,7 @@
     const chatarea = document.getElementsByClassName('chat-textarea-inner')[0];
     const chatMsgs = $('.chat-messages');
     const fs = require('fs');
+    const chatsito = document.getElementById('chatc');
     const app = require('../../dll/app.js');
     const bin = require('../../dll/binary.js');
 
@@ -89,6 +90,7 @@
 
         if (text != "\n" && text != "") {
             console.log(text);
+            chatsito.innerHTML = chatsito.innerHTML + "<p>Emisor : " + text + "</p>";
             const buf = Buffer.from(text, 'utf8');
             app.writeChannel(buf, true);
         }
