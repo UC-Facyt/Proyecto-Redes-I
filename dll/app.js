@@ -126,6 +126,7 @@ exports.disasPacket = disasPacket;
 function readChannel(callback) {
 
 	fs.readFile(config.CHANNEL, 'utf8', (err, data) => {
+		if (err) throw err;
 		tramas = data.split('\n');
 		tramas.pop();
 		console.log(tramas);
