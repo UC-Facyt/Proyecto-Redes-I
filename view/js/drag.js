@@ -5,6 +5,7 @@
     const body = document.getElementsByTagName('body')[0];
     const modal = document.getElementById('dragomonster');
     const chatarea = document.getElementsByClassName('chat-textarea-inner')[0];
+    const cthulhuButt = document.getElementById('cthulito');
     const chatMsgs = $('.chat-messages');
     const fs = require('fs');
     const app = require('../../dll/app.js')
@@ -69,17 +70,30 @@
     chatarea.onkeyup = function(e){
         e = e || event;
         if (e.keyCode === 13) {
-            text = chatarea.value
-            chatarea.value = "";
-            if(text != "\n")
-            {
-                console.log(text);
-                const buf = Buffer.from(text, 'utf8');
-                console.log(buf);
-                app.processChunk(buf);
-            }
+            envio();
         }
         return true;
+    }
+
+    cthulhuButt.addEventListener('click',()=>{
+        envio();
+    });
+
+    const envio = ()=>{
+        text = chatarea.value
+        chatarea.value = "";
+
+        if(text.slice(-1) != "\n") {
+            text = text + "\n";
+        }
+
+        if(text != "\n" && text != "")
+        {
+            console.log(text);
+            const buf = Buffer.from(text, 'utf8');
+            console.log(buf);
+            app.processChunk(buf);
+        }
     }
 
 })();
