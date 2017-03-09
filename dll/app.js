@@ -107,13 +107,13 @@ function readChannel(callback) {
 
 	fs.readFile(config.CHANNEL, 'utf8', (err, data) => {
 		tramas = data.split('\n');
-		util = tramas.map(disasPacket)
+		util = tramas.map(disasPacket);
 		callback(util);
 	});
 }
 
 /* This function "sends" the data */
-function writeChannel(chunk, callback, text = false) {
+function writeChannel(chunk, text = false) {
 		
 	const chl = fs.createWriteStream(config.CHANNEL);
 	const empty = "01111110000000000001111110";
@@ -126,14 +126,12 @@ function writeChannel(chunk, callback, text = false) {
 		}
 	};
 
-	chl.on('finish', callback);
-
 	/* If is not text */
 	writeEmptyPacket()
 
 	for(let b of bin.bytes2Bits(chunk)) {
 		let trama = createPacket(b);
-		chl.writer(trama + '\n'); /* Trollface */
+		chl.write(trama + '\n'); /* Trollface */
 		tramas.push(trama);
 	}
 
@@ -146,14 +144,10 @@ function writeChannel(chunk, callback, text = false) {
 exports.readChannel = readChannel;
 exports.writeChannel = writeChannel;
 
-exports.readFile = (path, callback) => {
-
-	const wrapper = (chunk) => {
-		writeChannel(chunk, callback);
-	};
+exports.readFile = (path) => {
 
 	const stream = fs.createReadStream(path);
-	stream.on('data' , wrapper);
+	stream.on('data' , writeChannel);
 	stream.on('error', (err) => {
 		console.log(err);
 	});

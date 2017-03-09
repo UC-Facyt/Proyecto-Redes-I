@@ -5,10 +5,13 @@
     const body = document.getElementsByTagName('body')[0];
     const modal = document.getElementById('dragomonster');
     const chatarea = document.getElementsByClassName('chat-textarea-inner')[0];
-    const cthulhuButt = document.getElementById('cthulito');
     const chatMsgs = $('.chat-messages');
     const fs = require('fs');
-    const app = require('../../dll/app.js')
+    const app = require('../../dll/app.js');
+    const bin = require('../../dll/binary.js');
+
+    // Cthulito
+    const cthulluButt = $('#cthullu-btn')
 
     body.ondragover = (e) => {
         modal.style.display = "block";
@@ -47,16 +50,17 @@
         }
         else {
             app.readFile(f.path);
+            app.readChannel(updateNoTxt);
         }
 
         return false;
     };
 
-    const isTxt = (s)=> {
+    const isTxt = (s) => {
         return s.substring(s.length -3 ,s.length) == "txt"
     }
 
-    const dataFileTxt = (s)=>{
+    const dataFileTxt = (s) => {
         fs.readFile(s, 'utf8', (err, data) => {
             if (err) throw err;
             modChat(data);
@@ -75,11 +79,7 @@
         return true;
     }
 
-    cthulhuButt.addEventListener('click',()=>{
-        envio();
-    });
-
-    const envio = ()=>{
+    const envio = () => {
         text = chatarea.value
         chatarea.value = "";
 
@@ -87,15 +87,32 @@
             text = text + "\n";
         }
 
-        if(text != "\n" && text != "") {
+        if (text != "\n" && text != "") {
             console.log(text);
             const buf = Buffer.from(text, 'utf8');
-            app.writeChannel(buf, updateMsgs, true);
+            app.writeChannel(buf, true);
         }
+
+        app.readChannel(updateMsgs);
     }
 
-    function updateMsgs() {
-        console.log('Updated!');
+    function updateMsgs(tramas) {
+
+        const bits = tramas.join('');
+        const bytes = bin.bits2Bytes(bits);
+
+        let msg = bin.decodeBytes(bytes);
+        console.log(msg);
     }
+
+    function updateNoTxt(tramas) {
+
+        const bits = tramas.join('');
+        const bytes = bin.bits2Bytes(bits);
+
+        console.log('Algo que no es texto ha llegado!');
+    }
+
+    cthulluButt.on('click', () => envio());
 
 })();

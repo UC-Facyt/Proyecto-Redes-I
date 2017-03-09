@@ -38,6 +38,13 @@ html, body {
     right: 5px;
 }
 
+.mode-btn {
+    position: fixed;
+    top: 8px;
+    right: 5px;
+    -webkit-app-region: no-drag;
+}
+
 .window-title {
     text-align:center;
     color: #0f0;

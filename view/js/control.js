@@ -1,6 +1,6 @@
 (function() {
 
-	/*const remote = require('electron').remote;
+	const remote = require('electron').remote;
 
 	let minBtn = document.getElementById('min-btn');
 	let maxBtn = document.getElementById('max-btn');
@@ -25,19 +25,6 @@
 		let width = $window.width();
 		let t = width > 355 ? winTitleFull : winTitleShort;
 		$winTitle.text(t);
-	}*/
-	const config = require('../../dll/config.js')
-	const butonito = document.getElementById('VerButt');
-
-	butonito.addEventListener('click',()=>{
-		if(butonito.innerHTML == 'CRC'){
-			butonito.innerHTML = 'HAMMING';
-			config.MODE = 'hamming';
-		}
-		else {
-			butonito.innerHTML = 'CRC';
-			config.MODE = 'crc';
-		}
-	});
-
+	}
+	
 })();

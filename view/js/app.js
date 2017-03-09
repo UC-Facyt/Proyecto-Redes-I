@@ -44,6 +44,26 @@
 	$window.on('resize', rPlaceholder);
 	$window.on('resize', rWinTitle);
 
+	/* Move this function to a config.js */
+
+	const config = require('../../dll/config.js')
+	const butonito = document.getElementById('VerButt');
+
+	butonito.addEventListener('click', () => {
+		if(butonito.innerHTML == 'CRC') {
+			butonito.innerHTML = 'HAMMING';
+			config.MODE = 'hamming';
+		}
+		else {
+			butonito.innerHTML = 'CRC';
+			config.MODE = 'crc';
+		}
+	});
+
+	(function initMode() {
+		butonito.innerHTML = (config.MODE != 'crc') ? 'Hamming' : 'CRC';
+	})();
+
 	/* Javascript puro
 
 	sendBtn = document.getElementById('enviomod');
