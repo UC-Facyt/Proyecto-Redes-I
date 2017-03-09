@@ -119,7 +119,7 @@
 			console.log(err);
 		});
 	}
-	
+
 	readFile(config.MSG_FILE);
 
 })();
