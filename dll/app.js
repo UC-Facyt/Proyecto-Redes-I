@@ -91,10 +91,11 @@ function disasPacket(packet) {
 	return packet;
 }
 
-function processChunk(chunk,text = true) {
+function processChunk(chunk, text = true) {
 
 	let tramas = [];
 
+	/* Cambiar esto a una funcion mas escalable */
 	if(!text) tramas.push("01111110000000000001111110");
 
 	for (let b of bin.bytes2Bits(chunk)) {
@@ -104,6 +105,7 @@ function processChunk(chunk,text = true) {
 	}
 
 	if(!text) tramas.push("01111110000000000001111110");
+	/* Envia toda las tramas */
 };
 
 exports.processChunk = processChunk;
@@ -115,5 +117,6 @@ exports.readFile = (path) => {
 		console.log(err);
 	});
 }
+
 
 // readFile(config.MSG_FILE);
