@@ -1,13 +1,23 @@
+const readline = require('readline');
 const config = require('./config.js');
 const fs = require('fs');
 const bin = require('./binary.js');
 const crc = require('./crc.js');
 const ham = require('./hamming.js');
 const flg = require('./flags.js');
+	
+const hexdump = (bits) => {
+	for (let i=0; i < bits.length; i+=8) {
+		let bin = bits.substr(i, 8);
+		let hex = parseInt(bin, 2).toString(16)
+		process.stdout.write(hex + ' ');
+	}
+}
 
 function createPacket(packet) {
 	console.log('Rosquete');
 	console.log(packet);
+	// hexdump(packet);
 
 	console.log('\nConteo de caracteres:')
 	packet = bin.addCharCont(packet);
@@ -91,52 +101,64 @@ function disasPacket(packet) {
 	return packet;
 }
 
-/* This class "puts" the data on the channel */
-function Channel() {
-	this.wt = fs.createWriteStream(config.CHANNEL);
-	this.put = (bits) => this.wt.write(bits + '\n');
-	this.end = () => this.wt.end();
-	return this;
+exports.disasPacket = disasPacket;
+
+function readChannel(callback) {
+
+	fs.readFile(config.CHANNEL, 'utf8', (err, data) => {
+		tramas = data.split('\n');
+		util = tramas.map(disasPacket)
+		callback(util);
+	});
 }
 
-exports.Channel = Channel;
-
-function processChunk(chunk, text = false) {
-	
+/* This function "sends" the data */
+function writeChannel(chunk, callback, text = false) {
+		
+	const chl = fs.createWriteStream(config.CHANNEL);
 	const empty = "01111110000000000001111110";
-	const channel = Channel();
 	const tramas = [];
 
-	/* Cambiar esto a una funcion mas escalable */
-	if(!text) {
-		channel.put(empty);
-		tramas.push(empty);
-	}
+	const writeEmptyPacket = () => {
+		if (!text) {
+			chl.write(empty);
+			tramas.push(empty);
+		}
+	};
 
-	for (let b of bin.bytes2Bits(chunk)) {
+	chl.on('finish', callback);
+
+	/* If is not text */
+	writeEmptyPacket()
+
+	for(let b of bin.bytes2Bits(chunk)) {
 		let trama = createPacket(b);
-		channel.put(trama);
+		chl.writer(trama + '\n'); /* Trollface */
 		tramas.push(trama);
 	}
 
-	if(!text) {
-		channel.put(empty);
-		tramas.push(empty);
-	}
+	writeEmptyPacket();
 
-	channel.end();
+	chl.end();
 	console.log(tramas);
 };
 
-exports.processChunk = processChunk;
+exports.readChannel = readChannel;
+exports.writeChannel = writeChannel;
 
-exports.readFile = (path) => {
+exports.readFile = (path, callback) => {
+
+	const wrapper = (chunk) => {
+		writeChannel(chunk, callback);
+	};
+
 	const stream = fs.createReadStream(path);
-	stream.on('data' , processChunk);
+	stream.on('data' , wrapper);
 	stream.on('error', (err) => {
 		console.log(err);
 	});
 }
+
 
 
 // readFile(config.MSG_FILE);

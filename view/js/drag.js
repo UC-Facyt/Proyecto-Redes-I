@@ -87,13 +87,15 @@
             text = text + "\n";
         }
 
-        if(text != "\n" && text != "")
-        {
+        if(text != "\n" && text != "") {
             console.log(text);
             const buf = Buffer.from(text, 'utf8');
-            console.log(buf);
-            app.processChunk(buf,true);
+            app.writeChannel(buf, updateMsgs, true);
         }
+    }
+
+    function updateMsgs() {
+        console.log('Updated!');
     }
 
 })();
