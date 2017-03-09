@@ -7,6 +7,7 @@
     const chatarea = document.getElementsByClassName('chat-textarea-inner')[0];
     const chatMsgs = $('.chat-messages');
     const fs = require('fs');
+    const app = require('../../dll/app.js')
 
     body.ondragover = (e) => {
         modal.style.display = "block";
@@ -72,10 +73,20 @@
             chatarea.value = "";
             if(text != "\n")
             {
-                console.log(text)
+                console.log(text);
+                text = dannyDeBitO(text);
+                new Buffer(text.split(''));
             }
         }
         return true;
+    }
+
+    const dannyDeBitO = (text) =>{
+        let s = [];
+        for (let x of text) {
+            s.push(x.charCodeAt())
+        }
+        return s;
     }
 
 })();
