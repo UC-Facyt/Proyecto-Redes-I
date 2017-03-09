@@ -43,10 +43,10 @@
         console.log('File(s) you dragged here: ', f.path)
         console.log('File(s) name ',f.name)
         if(isTxt(f.name)){
-            let data = dataFileTxt(f.path);
+            dataFileTxt(f.path);
         }
         else {
-
+            app.readFile(f.path);
         }
 
         return false;
@@ -92,7 +92,7 @@
             console.log(text);
             const buf = Buffer.from(text, 'utf8');
             console.log(buf);
-            app.processChunk(buf);
+            app.processChunk(buf,true);
         }
     }
 
