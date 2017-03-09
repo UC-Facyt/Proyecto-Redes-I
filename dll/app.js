@@ -5,7 +5,7 @@ const bin = require('./binary.js');
 const crc = require('./crc.js');
 const ham = require('./hamming.js');
 const flg = require('./flags.js');
-	
+
 const hexdump = (bits) => {
 	for (let i=0; i < bits.length; i+=8) {
 		let bin = bits.substr(i, 8);
@@ -51,53 +51,73 @@ function createPacket(packet) {
 }
 
 function disasPacket(packet) {
-
+	let coolBruh true;
 	console.log('\nBanderas:');
-	packet = flg.apatrida(packet);
-	console.log(packet);
+	coolBruh = flg.flagVerification(packet);
 
-	console.log('\nRelleno:');
-	packet = flg.desRelleno(packet);
-	console.log(packet);
-
-	switch (config.MODE) {
-		case 'crc':
-	 		console.log('\nCRC-16:');
-	 		console.log(crc.crc_16_Ver(packet) ? 'Nene' : 'Pupu');
-	 		packet = crc.unCrc(packet);
-	 		console.log(packet);
-	 		break;
-
-	 	case 'hamming':
-	 		console.log('\nHamming:');
-
-	 		let code = ham.correctPacket(packet);
-	 		for (let s of code) {
-	 			console.log(s);
-	 		}
-
-	 		packet = code.map(h => {
-	 			if (h.err != -1) console.log('Ay papa: ', h.err);
-	 			return h.bits;
-	 		}).join('');
-
-	 		console.log(packet);
-
-	 		packet = ham.remPacketParityBits(packet);
-	 		console.log(packet);
-
-	 		break
-
-	 	default:
-	 		break;
+	if(!coolBruh) {
+		console.log("Las Banderas estan mal");
+		packet = -1;
 	}
+	if(coolBruh){
+		packet = flg.apatrida(packet);
+		console.log(packet);
 
-	console.log('\nConteo:');
-	console.log(bin.bytesContCheck(packet) ? 'Nene' : 'Pupu');
-	packet = bin.remCharCont(packet);
+		console.log('\nRelleno:');
+		packet = flg.desRelleno(packet);
+		console.log(packet);
 
-	console.log(packet);
+		switch (config.MODE) {
+			case 'crc':
+		 		console.log('\nCRC-16:');
+		 		coolBruh = crc.crc_16_Ver(packet);
+		 		packet = crc.unCrc(packet);
+		 		console.log(packet);
+				if(!coolBruh) {
+					console.log("CRC: Hay un problema");
+					packet = -1;
+				}
+				else{
+					console.log("CRC: Todo bien");
+				}
+		 		break;
 
+		 	case 'hamming':
+		 		console.log('\nHamming:');
+
+		 		let code = ham.correctPacket(packet);
+		 		for (let s of code) {
+		 			console.log(s);
+		 		}
+
+		 		packet = code.map(h => {
+		 			if (h.err != -1) console.log('Hamming: Hubo un duende y se recupero ', h.err);
+		 			return h.bits;
+		 		}).join('');
+
+		 		console.log(packet);
+
+		 		packet = ham.remPacketParityBits(packet);
+		 		console.log(packet);
+
+		 		break
+
+		 	default:
+		 		break;
+		}
+		if(coolBruh)
+		{
+			console.log('\nConteo:');
+			coolBruh = bin.bytesContCheck(packet)
+			packet = bin.remCharCont(packet);
+			if(!coolBruh){
+				console.log("Conteo de caracteres: Algo anda mal");
+				packet = -1;
+			}
+		}
+
+		console.log(packet);
+	}
 	return packet;
 }
 
@@ -114,7 +134,7 @@ function readChannel(callback) {
 
 /* This function "sends" the data */
 function writeChannel(chunk, text = false) {
-		
+
 	const chl = fs.createWriteStream(config.CHANNEL);
 	const empty = "01111110000000000001111110";
 	const tramas = [];
