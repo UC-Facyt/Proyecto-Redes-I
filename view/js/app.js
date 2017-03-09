@@ -1,10 +1,9 @@
 (function() {
 	window.$ = window.jQuery = require('jquery'); /* jQuery :( */
-
 	/* Window titles */
 	const winTitleFull  = 'Project Cthullu Protocol';
 	const winTitleShort = 'PCP';
-	
+
 	const $window = $(window);
 	const $winTitle = $('.window-title');
 	const $chatBox = $('.chat-textarea-inner');
@@ -45,7 +44,7 @@
 	$window.on('resize', rPlaceholder);
 	$window.on('resize', rWinTitle);
 
-	/* Javascript puro 
+	/* Javascript puro
 
 	sendBtn = document.getElementById('enviomod');
 	sendBtn.addEventListener('mousedown', function() {
