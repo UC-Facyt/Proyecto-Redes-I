@@ -51,7 +51,7 @@
 
 	butonito.addEventListener('click', () => {
 		if(butonito.innerHTML == 'CRC') {
-			butonito.innerHTML = 'HAMMING';
+			butonito.innerHTML = 'Hamming';
 			config.MODE = 'hamming';
 		}
 		else {
