@@ -92,10 +92,14 @@
             console.log(text);
             chatsito.innerHTML = chatsito.innerHTML + "<p>Emisor : " + text + "</p>";
             const buf = Buffer.from(text, 'utf8');
-            app.writeChannel(buf, true);
+            app.writeChannel(buf, readChannelText, true);
         }
-        app.readChannel(updateMsgs);
+    }
 
+    function readChannelText() {
+        console.log('Epale');
+        console.log(updateMsgs);
+        app.readChannel(updateMsgs);
     }
 
     function updateMsgs(tramas) {
@@ -117,6 +121,6 @@
         console.log('Algo que no es texto ha llegado!');
     }
 
-    cthulluButt.on('click', () => envio());
+    cthulluButt.on('click', () => app.readChannel(updateMsgs));
 
 })();
