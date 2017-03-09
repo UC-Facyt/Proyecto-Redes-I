@@ -91,26 +91,22 @@ function disasPacket(packet) {
 	return packet;
 }
 
-exports.processChunk = (chunk) => {
+function processChunk(chunk) {
 
 	for (let b of bin.bytes2Bits(chunk)) {
 		let trama = createPacket(b);
 
-
-		let joseEnrique = Math.floor(Math.random() * trama.length);
-		let thing = trama.split('');
-		thing[joseEnrique] = (thing[joseEnrique] == 1) ? 0 : 1;
-
-		let packet = thing.join('');
 		/* Escribir en tramas.txt */
 
-		console.log(disasPacket(packet));
+		console.log(disasPacket(trama));
 	}
-}
+};
+
+exports.processChunk = processChunk;
 
 exports.readFile = (path) => {
 	const stream = fs.createReadStream(path);
-	stream.on('data' , exports.processChunk);
+	stream.on('data' , processChunk);
 	stream.on('error', (err) => {
 		console.log(err);
 	});

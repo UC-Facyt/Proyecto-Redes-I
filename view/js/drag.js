@@ -74,7 +74,9 @@
             if(text != "\n")
             {
                 console.log(text);
-                app.processChunk(Buffer.from(text, 'utf8'));
+                const buf = Buffer.from(text, 'utf8');
+                console.log(buf);
+                app.processChunk(buf);
             }
         }
         return true;
