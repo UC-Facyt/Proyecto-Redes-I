@@ -94,8 +94,8 @@
             const buf = Buffer.from(text, 'utf8');
             app.writeChannel(buf, true);
         }
-
         app.readChannel(updateMsgs);
+
     }
 
     function updateMsgs(tramas) {
@@ -105,6 +105,7 @@
 
         let msg = bin.decodeBytes(bytes);
         console.log(msg);
+        chatsito.innerHTML = chatsito.innerHTML + "<p>Receptor : " + msg + "</p>";
     }
 
     function updateNoTxt(tramas) {
